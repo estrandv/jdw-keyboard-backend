@@ -49,17 +49,15 @@ impl Letter {
 
 struct PlaySampleMessageData {
     number: i32,
-    args: HashMap<String, OscType>
+    pack_name: String
 }
 
 impl PlaySampleMessageData {
     fn new() -> PlaySampleMessageData {
 
-        let args: HashMap<String, OscType> = HashMap::new();
-
         PlaySampleMessageData {
             number: 0,
-            args
+            pack_name: "Roland808".to_string()
         }
     }
 
@@ -69,7 +67,17 @@ impl PlaySampleMessageData {
     }
 
     pub fn as_packet(&self) -> OscPacket {
-        OscPacket::Message(OscMessage::from("/todo"))
+        OscPacket::Message(OscMessage {
+            addr: "/play_sample".to_string(),
+            args: vec![
+                OscType::String("letter_sample".to_string()), // ext_id
+                OscType::String(self.pack_name.to_string()),
+                OscType::Int(self.number),
+                OscType::String("".to_string()),
+                OscType::String("ofs".to_string()), // NOTE: should be modular
+                OscType::Float(0.0),
+            ],
+        })
     }
 }
 
