@@ -41,6 +41,9 @@ impl Letter {
     pub fn from(letter: char) -> Result<Letter, String>{
         match letter {
             'a' => Ok(Letter::A),
+            's' => Ok(Letter::S),
+            'd' => Ok(Letter::D),
+            'f' => Ok(Letter::F),
             // TODO: rest of the damn alphabet...
             _ => Err(format!("{} is no a supported letter", letter))
         }
@@ -74,6 +77,7 @@ impl PlaySampleMessageData {
                 OscType::String(self.pack_name.to_string()),
                 OscType::Int(self.number),
                 OscType::String("".to_string()),
+		OscType::Int(0),
                 OscType::String("ofs".to_string()), // NOTE: should be modular
                 OscType::Float(0.0),
             ],

@@ -5,7 +5,6 @@ from pythonosc import udp_client
 client = udp_client.SimpleUDPClient("127.0.0.1", 13458) # Straight to main application
 
 client.send_message("/modify_letter", [
-
     'a', 1
 ])
 
